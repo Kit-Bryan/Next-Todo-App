@@ -1,0 +1,15 @@
+@import url("https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    box-sizing: border-box;
+}
+
+body{
+    position: relative;
+    height: 100vh;
+    padding: 3em;
+}
