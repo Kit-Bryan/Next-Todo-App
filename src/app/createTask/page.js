@@ -1,6 +1,5 @@
 'use client'
 import React, { useState } from 'react'
-import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import axios from '@/lib/axios'
 
@@ -25,7 +24,6 @@ function CreateTask(props) {
             ...formData, // Keep existing form data
             [name]: value, // Update form data for the input field that changed
         })
-        console.dir(formData)
     }
 
     return (<div className={'flex justify-center '}>
@@ -43,7 +41,7 @@ function CreateTask(props) {
                 </div>
                 <textarea onChange={handleInputChange} name={'description'} placeholder="Run 10 yards across the field" className="textarea textarea-info textarea-md w-full" />
             </label>
-            <Link href={'/'} onClick={handleSubmit} className={'btn btn-primary w-full mt-5 '}>
+            <Link href={'/'} onClick={async (e) => await handleSubmit(e)} className={'btn btn-primary w-full mt-5 '}>
                 <span>Create Task</span>
             </Link>
         </div>
