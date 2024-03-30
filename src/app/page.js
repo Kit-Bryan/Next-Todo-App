@@ -47,10 +47,9 @@ const Home = () => {
     //     'title': 'asd',
     // }]
     return (<main className={'flex flex-col items-center justify-center'}>
-        {JSON.stringify(tasks)}
+        {/*{JSON.stringify(tasks)}*/}
         <h1 className="text-4xl">Task List</h1>
         <div className={'flex justify-center gap-5 flex-wrap w-5/6'}>
-            {/*display green border if completed*/}
             {tasks.map((task, index) => (<TaskCard
                 key={task.id}
                 task={task}

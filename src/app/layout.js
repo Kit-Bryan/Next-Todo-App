@@ -3,7 +3,7 @@ import Loading from '@/app/loading'
 import { Suspense } from 'react'
 
 export const metadata = {
-    title: 'Laravel',
+    title: 'Todo App',
 }
 const RootLayout = ({ children }) => {
     return (
