@@ -14,7 +14,7 @@ function TaskCard(taskObject) {
         taskObject.removeTask(index)
     }
     return (<>
-        <div className="card w-3/12 bg-primary text-primary-content my-5 py-5 ">
+        <div className="card w-3/12 bg-primary text-primary-content my-5 py-5 flex-grow max-w-sm">
             <div className="card-body py-0">
                 {taskObject.task.completed_at ? <div className="badge badge-accent badge-lg ml-auto ">Completed</div> : <div className="badge badge-error badge-lg ml-auto ">Not Completed</div>}
                 <h2 className="card-title text-ellipsis overflow-hidden">{taskObject.task.title}</h2>

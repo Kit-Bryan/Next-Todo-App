@@ -53,16 +53,18 @@ const Home = () => {
     // }]
     return (<main className={'flex flex-col items-center justify-center'}>
         {/*{JSON.stringify(tasks)}*/}
-        <Link href={'http://localhost:3000/createTask'} className={'btn btn-info text-lg fixed bottom-72 left-14 z-10'}>Add task</Link>
+        <Link href={'http://localhost:3000/createTask'} className={'btn btn-info text-lg fixed bottom-72 2xl:top-96 left-14 z-10'}>Add task</Link>
         <h1 className="text-4xl">Task List</h1>
-        <div className={'flex justify-center gap-5 flex-wrap w-5/6'}>
-            {tasks.map((task, index) => (<TaskCard
-                key={task.id}
-                task={task}
-                removeTask={removeTask}
-                completeTask={completeTask}
-                index={index}
-            />))}
+        <div className={'flex justify-center gap-5 flex-wrap w-4/6'}>
+            <div className={'flex flex-wrap gap-5'}>
+                {tasks.map((task, index) => (<TaskCard
+                    key={task.id}
+                    task={task}
+                    removeTask={removeTask}
+                    completeTask={completeTask}
+                    index={index}
+                />))}
+            </div>
         </div>
     </main>)
 }
