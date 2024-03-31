@@ -8,16 +8,15 @@ const Home = () => {
     const [tasks, setTasks] = useState([]) // Initial state for data
 
     useEffect(() => {
-        axios.get('/api').then((data) => {
+        (async () => (await axios.get('/api').then((data) => {
+            console.log(data.data)
             setTasks(data.data)
-        })
+        })))()
     }, [])
 
     function removeTask(cardIndex) {
-        console.log(tasks)
         let newTasks = tasks.filter((item, index) => index !== cardIndex)
         setTasks(newTasks)
-        console.log(tasks)
     }
 
     function completeTask(cardIndex) {
@@ -26,7 +25,6 @@ const Home = () => {
             completed_at: 1,
         } : { ...item })
         setTasks(newTasks)
-        console.log(tasks)
     }
 
     //     [{

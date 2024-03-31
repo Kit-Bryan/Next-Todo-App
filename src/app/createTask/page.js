@@ -2,16 +2,20 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import axios from '@/lib/axios'
+import { useRouter } from 'next/navigation'
 
 function CreateTask(props) {
     const [formData, setFormData] = useState({})
+    const router = useRouter()
 
     const handleSubmit = async (event) => {
+        event.preventDefault()
         try {
             await axios.post('api/tasks', formData)
         } catch (e) {
             console.error(e.response.data.errors)
         }
+        router.push('/')
     }
 
     const handleInputChange = (event) => {
