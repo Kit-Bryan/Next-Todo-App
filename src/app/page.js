@@ -3,15 +3,20 @@ import { useEffect, useState } from 'react'
 import TaskCard from '@/components/TaskCard'
 import Link from 'next/link'
 import axios from '@/lib/axios'
+import Loading from '@/app/loading'
 
 const Home = () => {
     const [tasks, setTasks] = useState([]) // Initial state for data
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        (async () => (await axios.get('/api').then((data) => {
-            console.log(data.data)
-            setTasks(data.data)
-        })))()
+        (async () => {
+            await axios.get('/api').then((data) => {
+                console.log(data.data)
+                setTasks(data.data)
+                setLoading(false)
+            })
+        })()
     }, [])
 
     function removeTask(cardIndex) {
@@ -26,6 +31,8 @@ const Home = () => {
         } : { ...item })
         setTasks(newTasks)
     }
+
+    if (loading) return (<span><Loading /></span>)
 
     //     [{
     //     'id': 27,
@@ -46,6 +53,7 @@ const Home = () => {
     // }]
     return (<main className={'flex flex-col items-center justify-center'}>
         {/*{JSON.stringify(tasks)}*/}
+        <Link href={'http://localhost:3000/createTask'} className={'btn btn-info text-lg fixed bottom-72 left-14 z-10'}>Add task</Link>
         <h1 className="text-4xl">Task List</h1>
         <div className={'flex justify-center gap-5 flex-wrap w-5/6'}>
             {tasks.map((task, index) => (<TaskCard
@@ -56,7 +64,6 @@ const Home = () => {
                 index={index}
             />))}
         </div>
-        <Link href={'http://localhost:3000/createTask'} className={'btn btn-info text-lg absolute top-50 left-20'}>Add task</Link>
     </main>)
 }
 

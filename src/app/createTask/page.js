@@ -3,19 +3,22 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import axios from '@/lib/axios'
 import { useRouter } from 'next/navigation'
+import Loading from '@/app/loading'
 
-function CreateTask(props) {
+function CreateTask() {
     const [formData, setFormData] = useState({})
     const router = useRouter()
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (event) => {
         event.preventDefault()
         try {
+            setLoading(true);
             await axios.post('api/tasks', formData)
+            router.push('/')
         } catch (e) {
             console.error(e.response.data.errors)
         }
-        router.push('/')
     }
 
     const handleInputChange = (event) => {
@@ -29,6 +32,11 @@ function CreateTask(props) {
             [name]: value, // Update form data for the input field that changed
         })
     }
+
+
+    if(loading) return (
+        <span><Loading/></span>
+    );
 
     return (<div className={'flex justify-center '}>
         <div className={'flex flex-col items-center justify-center h-full border-solid hover:border-double border-4 w-6/12 p-10 pt-5 gap-6'}>
